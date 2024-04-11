@@ -1,5 +1,5 @@
-# Required packages and Modules
-customtkinter==0.3
+# Required dependencies and Modules
+customtkinter
 scikit-learn
 opencv-python
 pillow
