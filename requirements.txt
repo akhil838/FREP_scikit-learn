@@ -1,0 +1,6 @@
+# Required packages and Modules
+customtkinter==0.3
+scikit-learn
+opencv-python
+pillow
+numpy
