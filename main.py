@@ -27,16 +27,16 @@ space_lable.grid(row=1, column=0)
 default_Page_lable = CTkLabel(default_Page_video, text="", width=800, height=570)
 # lable_video.grid(row=0, column=0, rowspan=4, sticky="nse")
 image = Image.open('framework/3d-face-recognition-icon-png.webp')
-photo_image = CTkImage(image,size=(400 ,400))
-default_Page_lable.photo_image =photo_image
+photo_image = CTkImage(image, size=(400, 400))
+default_Page_lable.photo_image = photo_image
 default_Page_lable.configure(image=photo_image)
 default_Page_lable.pack()
-default_Page_lable1 = CTkLabel(default_Page_video,text="Made With ❤️ by ak838")
-default_Page_lable1.pack(side = BOTTOM)
+default_Page_lable1 = CTkLabel(default_Page_video, text="Made With ❤️ by ak838")
+default_Page_lable1.pack(side=BOTTOM)
 button1 = CTkButton(default_Page_menu, text="Recognise (Test)", command=lambda: recog.tkraise())
-button1.grid(row=2, column=0,pady = 5)
+button1.grid(row=2, column=0, pady=5)
 button6 = CTkButton(default_Page_menu, text="Add Faces (Train)", command=lambda: add_face.tkraise())
-button6.grid(row=3, column=0,pady = 5)
+button6.grid(row=3, column=0, pady=5)
 
 # FACE RECOGNITION FRAME
 recog = CTkFrame(app)
@@ -59,7 +59,7 @@ space_lable = CTkLabel(recog_menu, text="", width=200)
 space_lable.grid(row=1, column=0)
 
 button2 = CTkButton(recog_menu, text="Go back to Home", command=lambda: default_Page.tkraise())
-button2.grid(row=8, column=0,pady = 5)
+button2.grid(row=8, column=0, pady=5)
 
 # ADD FACES FRAME
 add_face = CTkFrame(app)
@@ -80,15 +80,24 @@ space_lable1 = CTkLabel(add_face_menu, text="", width=200)
 space_lable1.grid(row=1, column=0)
 
 button3 = CTkButton(add_face_menu, text="Go back to Home", command=lambda: default_Page.tkraise())
-button3.grid(row=8, column=0,pady = 5)
-name_lable = CTkLabel(add_face_menu,text="Enter Name")
-name_lable.grid(row = 4,column = 0)
+button3.grid(row=8, column=0, pady=5)
+name_lable = CTkLabel(add_face_menu, text="Enter Name")
+name_lable.grid(row=4, column=0)
 name_input = CTkTextbox(add_face_menu, height=5, width=140)
 name_input.grid(row=5, column=0)
 
 
+def disablebutton(button):
+    button.configure(state=DISABLED)
+
+
+def enablebutton(button):
+    button.configure(state=NORMAL)
+
 def testing():
-    vid = cv2.VideoCapture(0)
+    global vid
+    disablebutton(button4)
+    vid = cv2.VideoCapture(0, cv2.CAP_DSHOW)
     width, height = 800, 600
     # Set the width and height
     vid.set(cv2.CAP_PROP_FRAME_WIDTH, width)
@@ -135,12 +144,17 @@ def testing():
     test_video()
 
 
-button4 = CTkButton(recog_menu, text="camera", command=testing)
-button4.grid(row=3, column=0,pady = 5)
+button4 = CTkButton(recog_menu, text="Turn On Camera", command=testing)
+button4.grid(row=3, column=0, pady=5)
+stop_button_recog = CTkButton(recog_menu, text="Stop", command=lambda :(vid.release(),enablebutton(button4)))
+stop_button_recog.grid(row=4, column=0, pady=5)
 
 
 def train():
-    vid = cv2.VideoCapture(0)
+    global vid
+    disablebutton(button5)
+
+    vid = cv2.VideoCapture(0, cv2.CAP_DSHOW)
     width, height = 800, 600
     # Set the width and height
     vid.set(cv2.CAP_PROP_FRAME_WIDTH, width)
@@ -206,13 +220,16 @@ def train():
                 faces = np.append(faces, faces_data, axis=0)
                 with open('data/faces_data.pkl', 'wb') as f:
                     pickle.dump(faces, f)
-            vid.release()
 
+            vid.release()
+            enablebutton(button5)
     train_video()
 
 
 button5 = CTkButton(add_face_menu, text="Train", command=train)
-button5.grid(row=6, column=0,pady = 5)
+button5.grid(row=6, column=0, pady=5)
+stop_button_recog = CTkButton(add_face_menu, text="Stop", command=lambda :(vid.release(),enablebutton(button5)))
+stop_button_recog.grid(row=7, column=0, pady=5)
 
 default_Page.tkraise()
 # app.geometry("900x700")
