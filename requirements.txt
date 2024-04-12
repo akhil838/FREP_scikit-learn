@@ -2,5 +2,6 @@
 customtkinter
 scikit-learn
 opencv-python
+capture_devices
 pillow
 numpy
