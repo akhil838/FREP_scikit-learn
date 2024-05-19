@@ -32,6 +32,15 @@ This project implements a facial recognition and emotion prediction system using
 2. Use the add_faces to train the machine to recognise a new face.
 3. View the recognized faces and predicted emotions.
 
+**UI:**
+* Home Page
+![Screenshot 2024-05-20 010202](https://github.com/akhil838/FREP_scikit-learn/assets/64255484/8ddbd061-f13a-4042-bba7-3821892178f5)
+* Test
+![Screenshot 2024-05-20 010221](https://github.com/akhil838/FREP_scikit-learn/assets/64255484/e7d03168-c3f0-4a95-ab1c-71ac736b3d9b)
+* Train
+![Screenshot 2024-05-20 010250](https://github.com/akhil838/FREP_scikit-learn/assets/64255484/e7b53628-e867-42ef-bbcc-20bff302b7fe)
+
+
 **Contributing:**
 Contributions are welcome! If you have any suggestions, feature requests, or bug reports, please feel free to open an issue or create a pull request on the GitHub repository.
 
