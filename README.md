@@ -13,11 +13,11 @@ This project implements a facial recognition and emotion prediction system using
 **Installation:**
 1. Clone the repository:
    ```
-   git clone https://github.com/akhil838/Face-Recognition-and-Emotion-Predictor.git
+   git clone https://github.com/akhil838/FREP_scikit-learn.git
    ```
 2. Navigate to the project directory:
    ```
-   cd Face-Recognition-and-Emotion-Predictor
+   cd FREP_scikit-learn
    ```
 3. Install the required dependencies:
    ```
